@@ -5,3 +5,9 @@ This repo includes a little number of C++ design pattern examples (e.g. strategy
 * [CMake 3.24.1](https://cmake.org/cmake/help/latest/release/3.24.html)
 * Cpp 20 Compiler:
   * Apple clang version 12.0.0 (clang-1200.0.32.29)
+
+## Used tools
+* Build tool
+  * [CMake 3.24.1](https://cmake.org/cmake/help/latest/release/3.24.html)
+* Automated build and testing tool
+  * [Travis-CI](https://www.travis-ci.com/)
