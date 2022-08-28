@@ -6,7 +6,7 @@
 
 ## UML Diagrams
 ```plantuml
-@startuml
+@startuml composite_1
     actor Customer
     Customer -> "login()" : username & password
     "login()" -> Customer : session token
@@ -18,3 +18,5 @@
     deactivate "login()"
 @enduml
 ```
+
+![](composite_1.svg)

@@ -31,3 +31,7 @@
 *.out
 *.app
 .vscode/settings.json
+src/composite/composite.dSYM/Contents/Info.plist
+src/composite/composite.dSYM/Contents/Resources/DWARF/composite
+.vscode/tasks.json
+src/composite/composite
