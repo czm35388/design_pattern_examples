@@ -13,3 +13,6 @@ This repo includes a little number of C++ design pattern examples (e.g. strategy
   * [CMake 3.24.1](https://cmake.org/cmake/help/latest/release/3.24.html)
 * Automated build and testing tool
   * [Travis-CI](https://www.travis-ci.com/)
+
+## Pattern overview
+* [The Composite Pattern](src/composite/composite.md)
