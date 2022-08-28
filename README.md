@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/czm35388/design_pattern_examples.svg?branch=main)](https://travis-ci.com/czm35388/design_pattern_examples) 
+[![Build Status](https://app.travis-ci.com/github/czm35388/design_pattern_examples.svg?branch=main)](https://app.travis-ci.com/github/czm35388/design_pattern_examples) 
 
 # C++ design pattern examples
 This repo includes a little number of C++ design pattern examples (e.g. strategy, observer)
