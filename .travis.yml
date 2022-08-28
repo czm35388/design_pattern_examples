@@ -37,6 +37,6 @@ script:
   # !!! @todo add tests !!!
   # - make test_parser_lib_cov ARGS="-V"
   # change directory to the coverage folder
-  - cd coverage
-  # download and call bash script from codecov.io/bash
-  - bash <(curl -s https://codecov.io/bash)
+  # - cd coverage
+  # # download and call bash script from codecov.io/bash
+  # - bash <(curl -s https://codecov.io/bash)
