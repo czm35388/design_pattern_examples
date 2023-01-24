@@ -9,9 +9,15 @@
 #include "json_parser.h"
 
 // Concrete Creator or Client
-std::unique_ptr<cParser> createParser(std::unique_ptr<cParser>& pParser) 
+std::unique_ptr<cParser> createParser(std::unique_ptr<cParser>& pParserFactory) 
 { 
-    return pParser->create();
+    return pParserFactory->create();
+}
+
+void printInvalidFile()
+{
+    std::cerr << "Input is not valid. Please provide path to a '*.json', '*.map', '*.par' configuration file!" << std::endl;
+    return;
 }
 
 int main() 
@@ -24,29 +30,36 @@ int main()
     std::cin >> strFileName;
 
     const size_t nPos = strFileName.find_last_of(".");
+    if(!nPos)
+    {
+        printInvalidFile();
+    }
+
     const std::string strFileType = strFileName.substr(nPos);
     
-    std::unique_ptr<cParser> pParser = {nullptr};
+    std::unique_ptr<cParser> pParserFactory = {nullptr};
 
     if(!strFileType.compare(".map"))
     {
-        pParser = std::make_unique<cMapParser>();
+        pParserFactory = std::make_unique<cMapParser>();
     }
     else if(!strFileType.compare(".par"))
     {
-        pParser = std::make_unique<cParParser>();
+        pParserFactory = std::make_unique<cParParser>();
     }
     else if (!strFileType.compare(".json"))
     {
-        pParser = std::make_unique<cJsonParser>();
+        pParserFactory = std::make_unique<cJsonParser>();
     }
     else
     {
-        std::cerr << "Input is not valid. Please provide path to a '.map' or '.par' configuration file!" << std::endl;
+        printInvalidFile();
+        return 0;
     }
 
-    const auto pParserImpl = createParser(pParser);
-    pParserImpl->parse_file(strFileName);
+    const auto pConcreteParser = createParser(pParserFactory);
+    pConcreteParser->parse_file(strFileName);
 
     std::cout << std::endl;
+    return 0;
 }

@@ -2,7 +2,6 @@
 
 std::unique_ptr<cParser> cMapParser::create() 
 { 
-    std::cout << "Create Mapfile-Parser" << '\n';
     return std::make_unique<cMapParser>();
 }
 
