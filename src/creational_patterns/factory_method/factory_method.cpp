@@ -1,47 +1,52 @@
-#include <iostream>
-#include <memory>
+#include <string>
 
 // Product
-class Window{ 
- public: 
-    virtual std::unique_ptr<Window> create() { 
-        std::cout << "Create Window" << '\n';
-        return std::make_unique<Window>();
-    } 
-};
+#include "parser_intf.h"
 
 // Concrete Products 
-class DefaultWindow: public Window {
-    std::unique_ptr<Window> create() override { 
-        std::cout << "Create DefaultWindow" << '\n';
-        return std::make_unique<DefaultWindow>();
-    } 
-};
-
-class FancyWindow: public Window {
-    std::unique_ptr<Window> create() override { 
-        std::cout << "Create FancyWindow" << '\n';
-        return std::make_unique<FancyWindow>();
-    } 
-};
+#include "map_parser.h"
+#include "par_parser.h"
+#include "json_parser.h"
 
 // Concrete Creator or Client
-auto createWindow(std::unique_ptr<Window>& oldWindow) { 
-    return oldWindow->create();
+std::unique_ptr<cParser> createParser(std::unique_ptr<cParser>& pParser) 
+{ 
+    return pParser->create();
 }
-  
-int main() {
 
-    std::cout << '\n';
+int main() 
+{
 
-    std::unique_ptr<Window> window = std::make_unique<Window>();
-    std::unique_ptr<Window> defaultWindow = std::make_unique<DefaultWindow>();
-    std::unique_ptr<Window> fancyWindow = std::make_unique<FancyWindow>();
-  
-    const auto window1 = createWindow(window);
-    const auto defaultWindow1 = createWindow(defaultWindow);
-    const auto fancyWindow1 = createWindow(fancyWindow);
+    std::string strFileName = {""};
 
-    std::cout << '\n';
-  
+    std::cout << std::endl;
+    std::cout << "Please type in path to a configuration file: " << std::endl;
+    std::cin >> strFileName;
+
+    const size_t nPos = strFileName.find_last_of(".");
+    const std::string strFileType = strFileName.substr(nPos);
+    
+    std::unique_ptr<cParser> pParser = {nullptr};
+
+    if(!strFileType.compare(".map"))
+    {
+        pParser = std::make_unique<cMapParser>();
+    }
+    else if(!strFileType.compare(".par"))
+    {
+        pParser = std::make_unique<cParParser>();
+    }
+    else if (!strFileType.compare(".json"))
+    {
+        pParser = std::make_unique<cJsonParser>();
+    }
+    else
+    {
+        std::cerr << "Input is not valid. Please provide path to a '.map' or '.par' configuration file!" << std::endl;
+    }
+
+    const auto pParserImpl = createParser(pParser);
+    pParserImpl->parse_file(strFileName);
+
+    std::cout << std::endl;
 }
