@@ -13,6 +13,7 @@ config_storage cMapParser::parse_file(std::string strFileName)
     if (!result)
     {
         std::cerr << "XML parsing failed! Error description: " << result.description() << std::endl;
+        return config_storage();
     }
 
     config_storage oMeasurementConfig = {};
@@ -33,9 +34,14 @@ config_storage cMapParser::parse_file(std::string strFileName)
 
             strMethodName.append("DAQ " + strDaqEvent + " (" + strDaqPrescaller + ")");
         }
-        else
+        else if(!strPollingInterval.empty())
         {
             strMethodName.append("Polling " + strPollingInterval + " [ms]");
+        }
+        else
+        {
+            std::cerr << "Mapfile invalid! Output '" << oOutputPin.attribute("name").as_string() << "' doesn't contain a measurement method!" << std::endl;
+            return config_storage();
         }
 
         std::vector<std::string> oSignals = {};

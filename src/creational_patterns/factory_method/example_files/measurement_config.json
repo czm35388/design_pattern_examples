@@ -1,0 +1,30 @@
+{
+    "measurement_ui_config": [
+        {
+            "name": "DAQ 10 ms (1)",
+            "signals": [
+                "BitSlice",
+                "BitSlice",
+                "BitSlice0",
+                "BitSlice1",
+                "raw.Counter_B4",
+                "raw.Counter_B5",
+                "raw.Counter_B6"
+            ]
+        },
+        {
+            "name": "DAQ 100ms (1)",
+            "signals": [
+                "period",
+                "period_d",
+                "testudword1"
+            ]
+        },
+        {
+            "name": "Polling 100000 [ms]",
+            "signals": [
+                "bit12Counter"
+            ]
+        }
+    ]
+}
