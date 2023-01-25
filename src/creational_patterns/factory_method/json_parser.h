@@ -6,6 +6,5 @@
 class cJsonParser: public cParser 
 {
     std::unique_ptr<cParser> create() override;
-    void parse_file(std::string strFileName) override;
-
+    config_storage parse_file(std::string strFileName) override;
 };

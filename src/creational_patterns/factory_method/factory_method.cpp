@@ -58,7 +58,18 @@ int main()
     }
 
     const auto pConcreteParser = createParser(pParserFactory);
-    pConcreteParser->parse_file(strFileName);
+    const auto oMeasurementConfig = pConcreteParser->parse_file(strFileName);
+
+    std::cout << "The Config inherits " << oMeasurementConfig.size() << " methods" << std::endl << std::endl;
+    for(const auto& oMethod : oMeasurementConfig)
+    {
+        std::cout << oMethod.first << ":" << std::endl;
+        for(const auto& oSignal : oMethod.second)
+        {
+            std::cout << "  " << oSignal << std::endl;
+        }
+        std::cout << std::endl;
+    }
 
     std::cout << std::endl;
     return 0;

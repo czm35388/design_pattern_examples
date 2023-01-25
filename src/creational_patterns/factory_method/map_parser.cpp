@@ -5,7 +5,7 @@ std::unique_ptr<cParser> cMapParser::create()
     return std::make_unique<cMapParser>();
 }
 
-void cMapParser::parse_file(std::string strFileName)
+config_storage cMapParser::parse_file(std::string strFileName)
 {
     std::cout << "Mapfile - Parser parse configuration file: " << strFileName.c_str() << std::endl;
 
@@ -22,6 +22,9 @@ void cMapParser::parse_file(std::string strFileName)
     }
 
     handle_outputs_nodes(oMapfile.children("output"));
+
+    // @todo
+    return config_storage();
 }
 
 void cMapParser::handle_outputs_nodes(pugi::xml_object_range<pugi::xml_named_node_iterator> output_nodes)
