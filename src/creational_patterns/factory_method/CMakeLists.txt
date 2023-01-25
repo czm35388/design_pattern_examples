@@ -7,8 +7,6 @@ add_executable(${TARGET_NAME}
         json_parser.h
         map_parser.cpp
         map_parser.h
-        par_parser.cpp
-        par_parser.h
         ../../../3rdparty/pugixml/src/pugixml.cpp
     )
 

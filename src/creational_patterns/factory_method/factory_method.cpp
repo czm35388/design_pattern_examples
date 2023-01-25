@@ -5,7 +5,6 @@
 
 // Concrete Products 
 #include "map_parser.h"
-#include "par_parser.h"
 #include "json_parser.h"
 
 // Concrete Creator or Client
@@ -16,7 +15,7 @@ std::unique_ptr<cParser> createParser(std::unique_ptr<cParser>& pParserFactory)
 
 void printInvalidFile()
 {
-    std::cerr << "Input is not valid. Please provide path to a '*.json', '*.map', '*.par' configuration file!" << std::endl;
+    std::cerr << "Input is not valid. Please provide path to a '*.json', '*.map' configuration file!" << std::endl;
     return;
 }
 
@@ -42,10 +41,6 @@ int main()
     if(!strFileType.compare(".map"))
     {
         pParserFactory = std::make_unique<cMapParser>();
-    }
-    else if(!strFileType.compare(".par"))
-    {
-        pParserFactory = std::make_unique<cParParser>();
     }
     else if (!strFileType.compare(".json"))
     {
